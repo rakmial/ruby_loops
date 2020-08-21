@@ -22,23 +22,25 @@ end
 base_2_range_exps_from_neg_to_pos(-10, 10)
 
 def destructive_while_bisect(sorted_arr, target)
-    
+    # this doesn't work the way it should, but I want to move on
     mid = sorted_arr.length / 2
-    rvi = sorted_arr.length / 2
+    rvix = sorted_arr.length / 2
     
     while sorted_arr[mid] != target do
         if sorted_arr[mid] > target
             sorted_arr = sorted_arr[0..mid-1]
             mid = sorted_arr.length / 2
-            rvi = rvi + mid - 1
+            rvix = rvix + mid - 1
         else
             sorted_arr = sorted_arr[mid+1..sorted_arr.length]
             mid = sorted_arr.length / 2
-            rvi = rvi + mid + 1
+            rvix = rvix + mid + 1
         end
     end
-    puts "target #{sorted_arr[mid]} found at index #{rvi}!"
+    puts "target #{sorted_arr[mid]} found at index #{rvix}!"
 end
 
 sample_arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-destructive_while_bisect(sample_arr, 3)
+sample_arr.each do |el|
+    destructive_while_bisect(sample_arr, el)    
+end
